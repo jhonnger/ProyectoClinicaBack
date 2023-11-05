@@ -1,8 +1,7 @@
 package com.example.proyectoclinica.controllers;
 
-import com.example.proyectoclinica.entidades.Paciente;
-import com.example.proyectoclinica.entidades.Rol;
-import com.example.proyectoclinica.servicio.RolServicio;
+import com.example.proyectoclinica.entidades.Especialidad;
+import com.example.proyectoclinica.servicio.EspecialidadService;
 import com.example.proyectoclinica.util.RespuestaControlador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,21 +20,21 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/rol")
-public class RolController {
+@RequestMapping("/especialidad")
+public class EspecialidadController {
 
     @Autowired
-    private RolServicio rolServicio;
+    private EspecialidadService especialidadService;
 
     @GetMapping("/listar")
-    public List<Rol> listarRoles(){
-        return rolServicio.listarRoles();
+    public List<Especialidad> listarEspecialidad(){
+        return especialidadService.listarEspecialidad();
     }
 
     @PostMapping("/guardar")
-    public ResponseEntity<?> guardar (@RequestBody Rol rol){
+    public ResponseEntity<?> guardar (@RequestBody Especialidad especialidad){
         try {
-            RespuestaControlador rc = rolServicio.guardar(rol);
+            RespuestaControlador rc = especialidadService.guardar(especialidad);
             return ResponseEntity.ok(rc);
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
@@ -43,9 +42,9 @@ public class RolController {
     }
 
     @PutMapping("/actualizar")
-    public ResponseEntity<?> actualizar (@RequestBody Rol rol){
+    public ResponseEntity<?> actualizar (@RequestBody Especialidad especialidad){
         try {
-            RespuestaControlador rc =rolServicio.actualizar(rol);
+            RespuestaControlador rc =especialidadService.actualizar(especialidad);
             return ResponseEntity.ok(rc);
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -55,7 +54,7 @@ public class RolController {
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminar (@PathVariable Long id){
         try {
-            RespuestaControlador rc =  rolServicio.eliminar(id);
+            RespuestaControlador rc =  especialidadService.eliminar(id);
             return ResponseEntity.ok(rc);
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

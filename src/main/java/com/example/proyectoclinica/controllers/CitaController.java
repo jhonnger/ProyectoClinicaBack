@@ -1,8 +1,7 @@
 package com.example.proyectoclinica.controllers;
 
-import com.example.proyectoclinica.entidades.Paciente;
-import com.example.proyectoclinica.entidades.Rol;
-import com.example.proyectoclinica.servicio.RolServicio;
+import com.example.proyectoclinica.entidades.Cita;
+import com.example.proyectoclinica.servicio.CitaService;
 import com.example.proyectoclinica.util.RespuestaControlador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,25 +16,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/rol")
-public class RolController {
+@RequestMapping("/cita")
+public class CitaController {
 
     @Autowired
-    private RolServicio rolServicio;
+    private CitaService citaService;
 
     @GetMapping("/listar")
-    public List<Rol> listarRoles(){
-        return rolServicio.listarRoles();
+    public ResponseEntity<?> listar(){
+        return ResponseEntity.ok(citaService.listarCita());
     }
 
     @PostMapping("/guardar")
-    public ResponseEntity<?> guardar (@RequestBody Rol rol){
+    public ResponseEntity<?> guardar (@RequestBody Cita cita){
         try {
-            RespuestaControlador rc = rolServicio.guardar(rol);
+            RespuestaControlador rc = citaService.guardar(cita);
             return ResponseEntity.ok(rc);
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
@@ -43,9 +40,9 @@ public class RolController {
     }
 
     @PutMapping("/actualizar")
-    public ResponseEntity<?> actualizar (@RequestBody Rol rol){
+    public ResponseEntity<?> actualizar (@RequestBody Cita cita){
         try {
-            RespuestaControlador rc =rolServicio.actualizar(rol);
+            RespuestaControlador rc = citaService.actualizar(cita);
             return ResponseEntity.ok(rc);
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -55,7 +52,7 @@ public class RolController {
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminar (@PathVariable Long id){
         try {
-            RespuestaControlador rc =  rolServicio.eliminar(id);
+            RespuestaControlador rc = citaService.eliminar(id);
             return ResponseEntity.ok(rc);
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

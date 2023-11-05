@@ -9,14 +9,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "usuario")
-public class Usuario {
-
+@Table(name = "medico")
+public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idusuario")
+    @Column(name = "idmedico")
     private Long id;
 
     @Column(name = "nombre")
@@ -24,6 +22,12 @@ public class Usuario {
 
     @Column(name = "apellido")
     private String apellido;
+
+    @Column(name = "direccion")
+    private String direccion;
+
+    @Column(name = "fechanacimiento")
+    private String fechanacimiento;
 
     @Column(name = "sexo")
     private String sexo;
@@ -34,15 +38,12 @@ public class Usuario {
     @Column(name = "dni")
     private String dni;
 
-    @Column(name = "login")
-    private String login;
-
-    @Column(name = "password")
-    private String password;
+    @Column(name = "cmp")
+    private String cmp;
 
     @ManyToOne()
-    @JoinColumn(name = "idrol")
-    private Rol rol;
+    @JoinColumn(name = "idespecialidad")
+    private Especialidad especialidad;
 
     public Long getId() {
         return id;
@@ -66,6 +67,22 @@ public class Usuario {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getFechanacimiento() {
+        return fechanacimiento;
+    }
+
+    public void setFechanacimiento(String fechanacimiento) {
+        this.fechanacimiento = fechanacimiento;
     }
 
     public String getSexo() {
@@ -92,27 +109,19 @@ public class Usuario {
         this.dni = dni;
     }
 
-    public String getLogin() {
-        return login;
+    public String getCmp() {
+        return cmp;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setCmp(String cmp) {
+        this.cmp = cmp;
     }
 
-    public String getPassword() {
-        return password;
+    public Especialidad getEspecialidad() {
+        return especialidad;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setEspecialidad(Especialidad especialidad) {
+        this.especialidad = especialidad;
     }
 }

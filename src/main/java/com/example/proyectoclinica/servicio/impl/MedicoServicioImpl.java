@@ -1,8 +1,8 @@
 package com.example.proyectoclinica.servicio.impl;
 
-import com.example.proyectoclinica.entidades.Rol;
-import com.example.proyectoclinica.repositorios.RolRepositorio;
-import com.example.proyectoclinica.servicio.RolServicio;
+import com.example.proyectoclinica.entidades.Medico;
+import com.example.proyectoclinica.repositorios.MedicoRepositorio;
+import com.example.proyectoclinica.servicio.MedicoService;
 import com.example.proyectoclinica.util.RespuestaControlador;
 import com.example.proyectoclinica.util.RespuestaControladorServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,40 +11,43 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RolServicioImpl implements RolServicio {
+public class MedicoServicioImpl implements MedicoService {
+
     @Autowired
-    private RolRepositorio rolRepositorio;
+    private MedicoRepositorio medicoRepositorio;
 
     @Autowired
     RespuestaControladorServicio respuestaControladorServicio;
 
     @Override
-    public List<Rol> listarRoles(){
-
-        return rolRepositorio.findAll();
+    public List<Medico> listarMedico() {
+        return medicoRepositorio.findAll();
     }
 
     @Override
-    public RespuestaControlador guardar(Rol rol) {
+    public RespuestaControlador guardar(Medico medico) {
         RespuestaControlador respuestaControlador;
-        rolRepositorio.save(rol);
+        medicoRepositorio.save(medico);
         respuestaControlador = respuestaControladorServicio.obtenerRespuestaDeExitoCrear("Medico");
         return respuestaControlador;
+
     }
 
     @Override
-    public RespuestaControlador actualizar(Rol rol) {
+    public RespuestaControlador actualizar(Medico medico) {
         RespuestaControlador respuestaControlador;
-        rolRepositorio.save(rol);
+        medicoRepositorio.save(medico);
         respuestaControlador = respuestaControladorServicio.obtenerRespuestaDeExitoActualizar("Medico");
         return respuestaControlador;
+
     }
 
     @Override
     public RespuestaControlador eliminar(Long id) {
         RespuestaControlador respuestaControlador;
-        rolRepositorio.deleteById(id);
+        medicoRepositorio.deleteById(id);
         respuestaControlador = respuestaControladorServicio.obtenerRespuestaDeExitoEliminar("Medico");
         return respuestaControlador;
+
     }
 }

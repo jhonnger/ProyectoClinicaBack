@@ -1,8 +1,8 @@
 package com.example.proyectoclinica.servicio.impl;
 
-import com.example.proyectoclinica.entidades.Rol;
-import com.example.proyectoclinica.repositorios.RolRepositorio;
-import com.example.proyectoclinica.servicio.RolServicio;
+import com.example.proyectoclinica.entidades.Especialidad;
+import com.example.proyectoclinica.repositorios.EspecialidadRepositorio;
+import com.example.proyectoclinica.servicio.EspecialidadService;
 import com.example.proyectoclinica.util.RespuestaControlador;
 import com.example.proyectoclinica.util.RespuestaControladorServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,31 +11,31 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RolServicioImpl implements RolServicio {
+public class EspecialidadServicioImpl implements EspecialidadService {
+
     @Autowired
-    private RolRepositorio rolRepositorio;
+    private EspecialidadRepositorio especialidadRepositorio;
 
     @Autowired
     RespuestaControladorServicio respuestaControladorServicio;
 
     @Override
-    public List<Rol> listarRoles(){
-
-        return rolRepositorio.findAll();
+    public List<Especialidad> listarEspecialidad(){
+        return especialidadRepositorio.findAll();
     }
 
     @Override
-    public RespuestaControlador guardar(Rol rol) {
+    public RespuestaControlador guardar(Especialidad especialidad) {
         RespuestaControlador respuestaControlador;
-        rolRepositorio.save(rol);
+        especialidadRepositorio.save(especialidad);
         respuestaControlador = respuestaControladorServicio.obtenerRespuestaDeExitoCrear("Medico");
         return respuestaControlador;
     }
 
     @Override
-    public RespuestaControlador actualizar(Rol rol) {
+    public RespuestaControlador actualizar(Especialidad especialidad) {
         RespuestaControlador respuestaControlador;
-        rolRepositorio.save(rol);
+        especialidadRepositorio.save(especialidad);
         respuestaControlador = respuestaControladorServicio.obtenerRespuestaDeExitoActualizar("Medico");
         return respuestaControlador;
     }
@@ -43,7 +43,7 @@ public class RolServicioImpl implements RolServicio {
     @Override
     public RespuestaControlador eliminar(Long id) {
         RespuestaControlador respuestaControlador;
-        rolRepositorio.deleteById(id);
+        especialidadRepositorio.deleteById(id);
         respuestaControlador = respuestaControladorServicio.obtenerRespuestaDeExitoEliminar("Medico");
         return respuestaControlador;
     }

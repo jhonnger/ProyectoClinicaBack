@@ -1,22 +1,20 @@
 package com.example.proyectoclinica.entidades;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "usuario")
-public class Usuario {
+@Table(name = "paciente")
+public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idusuario")
+    @Column(name = "idpaciente")
     private Long id;
 
     @Column(name = "nombre")
@@ -24,6 +22,12 @@ public class Usuario {
 
     @Column(name = "apellido")
     private String apellido;
+
+    @Column(name = "direccion")
+    private String direccion;
+
+    @Column(name = "fechanacimiento")
+    private String fechanacimiento;
 
     @Column(name = "sexo")
     private String sexo;
@@ -33,16 +37,6 @@ public class Usuario {
 
     @Column(name = "dni")
     private String dni;
-
-    @Column(name = "login")
-    private String login;
-
-    @Column(name = "password")
-    private String password;
-
-    @ManyToOne()
-    @JoinColumn(name = "idrol")
-    private Rol rol;
 
     public Long getId() {
         return id;
@@ -68,6 +62,22 @@ public class Usuario {
         this.apellido = apellido;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getFechanacimiento() {
+        return fechanacimiento;
+    }
+
+    public void setFechanacimiento(String fechanacimiento) {
+        this.fechanacimiento = fechanacimiento;
+    }
+
     public String getSexo() {
         return sexo;
     }
@@ -90,29 +100,5 @@ public class Usuario {
 
     public void setDni(String dni) {
         this.dni = dni;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
     }
 }
